@@ -1,0 +1,50 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: simple-hello-world
+  title: Create a simple Hello World project
+  description: Generates a minimal project with just a README file.
+  tags:
+    - demo
+    - beginner
+spec:
+  owner: team-a
+  type: service
+
+  parameters:
+    - title: Basic Information
+      required:
+        - name
+      properties:
+        name:
+          title: Project name
+          type: string
+          description: The name of your new project.
+
+  steps:
+    - id: fetch
+      name: Fetch skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+
+    - id: publish
+      name: Create GitHub repository
+      action: publish:github
+      input:
+        repoUrl: github.com?owner=nathalie-beaudoin&repo=${{ parameters.name }}
+        repoVisibility: public
+
+    - id: register
+      name: Register in Backstage catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: Open Repository
+        url: ${{ steps.publish.output.remoteUrl }}
