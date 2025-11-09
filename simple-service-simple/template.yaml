@@ -86,14 +86,13 @@ spec:
             name: ${{ parameters.name }}
             namespace: default
             description: ${{ parameters.description }}
-            tags: ${{ json parameters.tags }}
+            tags:
+              - service
+              - demo
           spec:
             type: service
             lifecycle: ${{ parameters.lifecycle }}
             owner: ${{ parameters.owner }}
-${{#if parameters.system}}
-            system: ${{ parameters.system }}
-${{/if}}
 
   output:
     links:
