@@ -26,7 +26,7 @@ spec:
       name: Fetch skeleton
       action: fetch:template
       input:
-        url: https://github.com/nathalie-beaudoin/backstage-templates/tree/main/hello/skeleton
+        url: https://github.com/nathalie-beaudoin/backstage-templates/blob/main/hello/skeleton
         values:
           name: ${{ parameters.name }}
 
