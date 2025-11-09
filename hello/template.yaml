@@ -4,18 +4,14 @@ metadata:
   name: simple-hello-world
   title: Create a simple Hello World project
   description: Generates a minimal project with just a README file.
-  tags:
-    - demo
-    - beginner
+  tags: [demo, beginner]
 spec:
   owner: platform-team
   type: service
 
   parameters:
     - title: Basic Information
-      required:
-        - name
-        - owner
+      required: [name, owner]
       properties:
         name:
           title: Project name
@@ -32,15 +28,19 @@ spec:
       name: Fetch skeleton
       action: fetch:template
       input:
+        # <- DOIT pointer sur le DOSSIER du squelette (tree/<branch>/path)
         url: https://github.com/nathalie-beaudoin/backstage-templates/tree/main/hello/skeleton
         values:
           name: ${{ parameters.name }}
+          owner: ${{ parameters.owner }}
 
     - id: publish
       name: Create GitHub repository
       action: publish:github
       input:
-        repoUrl: https://github.com/nathalie-beaudoin/backstage-templates/tree/main/hello/skeleton
+        # <- format attendu par publish:github (PAS une URL https)
+        repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.name }}
+        defaultBranch: main
         repoVisibility: public
 
     - id: register
@@ -48,10 +48,9 @@ spec:
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+        catalogInfoPath: /catalog-info.yaml
 
   output:
     links:
       - title: Open Repository
         url: ${{ steps.publish.output.remoteUrl }}
-
