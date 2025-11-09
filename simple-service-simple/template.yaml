@@ -95,9 +95,9 @@ spec:
             owner: ${{ parameters.owner }}
     - id: register
       name: Register Component
-      action: catalog:register
+      action: catalog:write
       input:
-        catalogInfo: |
+        entity:
           apiVersion: backstage.io/v1alpha1
           kind: Component
           metadata:
