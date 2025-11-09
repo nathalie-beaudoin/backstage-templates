@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Template
+metadata:
+  name: simple-service-simple
+  title: Simple Service (No GitHub)
+  description: A simple service template that just creates the catalog entry - no GitHub required
+  tags:
+    - service
+    - demo
+    - learning
+    - simple
+spec:
+  type: service
+  owner: team-a
+  templater: cookiecutter
+  path: .
