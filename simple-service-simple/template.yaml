@@ -74,11 +74,12 @@ spec:
             - demo
 
   steps:
-    - id: register
-      name: Register Component
-      action: catalog:write
+    - id: write-catalog-info
+      name: Write catalog-info.yaml
+      action: fs:write
       input:
-        entity:
+        path: ./catalog-info.yaml
+        contents: |
           apiVersion: backstage.io/v1alpha1
           kind: Component
           metadata:
@@ -92,6 +93,11 @@ spec:
             type: service
             lifecycle: ${{ parameters.lifecycle }}
             owner: ${{ parameters.owner }}
+    - id: register
+      name: Register Component
+      action: catalog:register
+      input:
+        catalogInfoPath: './catalog-info.yaml'
 
   output:
     links:
