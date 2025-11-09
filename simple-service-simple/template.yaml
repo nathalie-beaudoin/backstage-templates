@@ -78,20 +78,20 @@ spec:
       name: Register Component
       action: catalog:write
       input:
-        entity:
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: ${{ parameters.name }}
-            namespace: default
-            description: ${{ parameters.description }}
-            tags:
-              - service
-              - demo
-          spec:
-            type: service
-            lifecycle: ${{ parameters.lifecycle }}
-            owner: ${{ parameters.owner }}
+        entities:
+          - apiVersion: backstage.io/v1alpha1
+            kind: Component
+            metadata:
+              name: ${{ parameters.name }}
+              namespace: default
+              description: ${{ parameters.description }}
+              tags:
+                - service
+                - demo
+            spec:
+              type: service
+              lifecycle: ${{ parameters.lifecycle }}
+              owner: ${{ parameters.owner }}
 
   output:
     links:
