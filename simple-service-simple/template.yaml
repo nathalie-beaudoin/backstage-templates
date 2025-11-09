@@ -78,7 +78,6 @@ spec:
       name: Register Component
       action: catalog:register
       input:
-        catalogInfoPath: '/catalog-info.yaml'
         catalogInfo:
           apiVersion: backstage.io/v1alpha1
           kind: Component
