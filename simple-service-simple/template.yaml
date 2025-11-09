@@ -76,9 +76,9 @@ spec:
   steps:
     - id: register
       name: Register Component
-      action: catalog:register
+      action: catalog:write
       input:
-        catalogInfo:
+        entity:
           apiVersion: backstage.io/v1alpha1
           kind: Component
           metadata:
@@ -97,5 +97,5 @@ spec:
     links:
       - title: View in catalog
         icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+        entityRef: component:default/${{ parameters.name }}
 
