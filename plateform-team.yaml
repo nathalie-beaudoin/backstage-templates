@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-team
+  description: Platform Engineering Team
+spec:
+  type: team
+  profile:
+    displayName: Platform Team
+    email: platform-team@example.com   # ← optionnel
+    picture: https://avatars.githubusercontent.com/u/9919?s=200&v=4  # ← optionnel
+  parent: default
+  children: []
+  members: []
