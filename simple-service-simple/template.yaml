@@ -74,25 +74,6 @@ spec:
             - demo
 
   steps:
-    - id: write-catalog-info
-      name: Write catalog-info.yaml
-      action: fs:write
-      input:
-        path: ./catalog-info.yaml
-        contents: |
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: ${{ parameters.name }}
-            namespace: default
-            description: ${{ parameters.description }}
-            tags:
-              - service
-              - demo
-          spec:
-            type: service
-            lifecycle: ${{ parameters.lifecycle }}
-            owner: ${{ parameters.owner }}
     - id: register
       name: Register Component
       action: catalog:register
