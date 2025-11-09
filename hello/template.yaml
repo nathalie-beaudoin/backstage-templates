@@ -32,7 +32,7 @@ spec:
       name: Fetch skeleton
       action: fetch:template
       input:
-        url: https://raw.githubusercontent.com/nathalie-beaudoin/backstage-templates/main/hello/skeleton
+        url: github.com?owner=nathalie-beaudoin&repo=backstage-templates&path=hello/skeleton
         values:
           name: ${{ parameters.name }}
 
