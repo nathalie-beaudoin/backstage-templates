@@ -40,7 +40,7 @@ spec:
       name: Create GitHub repository
       action: publish:github
       input:
-        repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.name }}
+        repoUrl: https://github.com/nathalie-beaudoin/backstage-templates/tree/main/hello/skeleton
         repoVisibility: public
 
     - id: register
