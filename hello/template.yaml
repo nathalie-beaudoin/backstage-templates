@@ -15,11 +15,17 @@ spec:
     - title: Basic Information
       required:
         - name
+        - owner
       properties:
         name:
           title: Project name
           type: string
           description: The name of your new project.
+        owner:
+          title: GitHub Owner
+          type: string
+          description: Your GitHub username or organization name
+          default: nathalie-beaudoin
 
   steps:
     - id: readme
@@ -65,7 +71,7 @@ spec:
       name: Create GitHub repository
       action: publish:github
       input:
-        repoUrl: github.com?owner=my-org&repo=${{ parameters.name }}
+        repoUrl: github.com?owner=${{ parameters.owner }}&repo=${{ parameters.name }}
         repoVisibility: public
 
     - id: register
